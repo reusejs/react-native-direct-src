@@ -18,15 +18,24 @@ This step is important. We are passing `theme` as context value that each compon
 
 ```js
 //your root component
+/**
+ * @format
+ */
+import React from 'react';
+import {AppRegistry} from 'react-native';
+import App from './App';
+import {name as appName} from './app.json';
 import {ThemeProvider, theme} from '@reusejs/react-native';
 
-function App() {
+function ThemeApp() {
   return (
     <ThemeProvider value={theme}>
-      <Root />
+      <App />
     </ThemeProvider>
   );
 }
+
+AppRegistry.registerComponent(appName, () => ThemeApp);
 ```
 
 ### Step 2. Use component.
@@ -36,7 +45,14 @@ function App() {
 import {Button} from '@reusejs/react-native';
 
 function HomeScreen() {
-  return <Button>Press Me</Button>;
+  return (
+    <Button
+      onPress={() => {
+        console.log('Lol');
+      }}>
+      Press Me
+    </Button>
+  );
 }
 ```
 
@@ -55,7 +71,7 @@ theme.brandColor.primary = 'orange';
 function App() {
   return (
     <ThemeProvider value={theme}>
-      <Root />
+      <App />
     </ThemeProvider>
   );
 }
@@ -94,7 +110,7 @@ import theme from './theme.config.js';
 function App() {
   return (
     <ThemeProvider value={theme}>
-      <Root />
+      <App />
     </ThemeProvider>
   );
 }
